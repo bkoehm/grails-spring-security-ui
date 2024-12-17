@@ -76,7 +76,6 @@ dependencies {
     implementation "org.grails:grails-plugin-services"
     implementation "org.grails:grails-plugin-url-mappings"
     implementation "org.grails:grails-plugin-interceptors"
-    implementation "org.grails.plugins:cache"
     implementation "org.grails.plugins:gsp"
     console "org.grails:grails-console"
     profile "org.grails.profiles:web-plugin"
@@ -84,8 +83,9 @@ dependencies {
     compileOnly "org.grails:grails-plugin-domain-class"
     runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails:$assetPipelineVersion"
     api "org.grails.plugins:spring-security-core:$springSecurityCoreVersion"
-    testCompileOnly "org.grails:grails-gorm-testing-support"
-    testCompileOnly "org.grails:grails-web-testing-support"
+    testImplementation "org.grails:grails-gorm-testing-support"
+    testImplementation "org.grails:grails-web-testing-support"
+    testImplementation "org.spockframework:spock-core"
     implementation "org.springframework.security:spring-security-core", {
         ['spring-aop', 'spring-beans', 'spring-context', 'spring-core', 'spring-expression'].each {
             exclude module: it

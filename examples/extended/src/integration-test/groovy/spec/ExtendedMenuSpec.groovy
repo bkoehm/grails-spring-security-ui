@@ -1,19 +1,8 @@
 package spec
 
-import spock.lang.IgnoreIf
+import grails.testing.mixin.integration.Integration
 
-@IgnoreIf({
-	if (!System.getProperty('geb.env')) {
-        return true
-    }
-	if (System.getProperty('geb.env') == 'phantomjs' && !System.getProperty('phantomjs.binary.path')) {
-		return true
-	}
-	if (System.getProperty('geb.env') == 'chrome' && !System.getProperty('webdriver.chrome.driver')) {
-		return true
-	}
-	false
-})
+@Integration
 class ExtendedMenuSpec extends AbstractSecuritySpec {
 
 	void testIndex() {
