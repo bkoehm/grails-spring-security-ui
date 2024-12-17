@@ -80,7 +80,7 @@ dependencies {
     api "org.grails.plugins:spring-security-core:$springSecurityCoreVersion"
     testCompileOnly "org.grails:grails-gorm-testing-support"
     testCompileOnly "org.grails:grails-web-testing-support"
-    implementation "org.springframework.security:spring-security-core:$springSecurityVersion", {
+    implementation "org.springframework.security:spring-security-core", {
         ['spring-aop', 'spring-beans', 'spring-context', 'spring-core', 'spring-expression'].each {
             exclude module: it
         }
