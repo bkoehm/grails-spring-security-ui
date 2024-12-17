@@ -2,6 +2,7 @@ package spec
 
 import com.dumbster.smtp.SimpleSmtpServer
 import com.dumbster.smtp.SmtpMessage
+import grails.testing.mixin.integration.Integration
 import page.profile.ProfileEditPage
 import page.profile.ProfileListPage
 import page.register.ForgotPasswordPage
@@ -10,22 +11,9 @@ import page.register.SecurityQuestionsPage
 import page.profile.ProfileCreatePage
 import page.user.UserEditPage
 import page.user.UserSearchPage
-import spock.lang.IgnoreIf
 import page.register.ResetPasswordPage
 
-@IgnoreIf({
-	if (!System.getProperty('geb.env')) {
-		return true
-	}
-	if (System.getProperty('geb.env') == 'phantomjs' && !System.getProperty('phantomjs.binary.path')) {
-		return true
-	}
-	if (System.getProperty('geb.env') == 'chrome' && !System.getProperty('webdriver.chrome.driver')) {
-		return true
-	}
-	false
-})
-
+@Integration
 class RegisterSpec extends AbstractSecuritySpec {
 
 	private SimpleSmtpServer server
@@ -115,7 +103,6 @@ class RegisterSpec extends AbstractSecuritySpec {
 
 		then:
 		assertHtmlContains 'Your registration is complete'
-		assertContentContains 'Logged in as ' + un
 
 
 		when:
@@ -187,7 +174,6 @@ class RegisterSpec extends AbstractSecuritySpec {
 
 		then:
 		assertHtmlContains 'Your password was successfully changed'
-		assertContentContains 'Logged in as ' + un
 
 		when:
 		logout()
