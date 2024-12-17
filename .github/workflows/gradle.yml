@@ -26,7 +26,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
+          distribution: 'liberica'
           java-version: ${{ matrix.java }}
       - name: Run Tests
         if: github.event_name == 'pull_request'
