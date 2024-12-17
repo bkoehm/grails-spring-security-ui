@@ -6,7 +6,6 @@ buildscript {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath "org.grails.plugins:hibernate5:${hibernateGormVersion}"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:${assetPipelineVersion}"
-        classpath "gradle.plugin.com.github.erdi.webdriver-binaries:webdriver-binaries-gradle-plugin:2.7"
     }
 }
 
@@ -17,7 +16,6 @@ apply plugin:"eclipse"
 apply plugin:"idea"
 apply plugin:"war"
 apply plugin:"org.grails.grails-web"
-apply plugin:"com.github.erdi.webdriver-binaries"
 apply plugin: "com.bertramlabs.asset-pipeline"
 apply plugin:"org.grails.grails-gsp"
 
@@ -53,13 +51,8 @@ dependencies {
     runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails:$assetPipelineVersion"
     testImplementation "org.grails:grails-gorm-testing-support"
     testImplementation "org.grails:grails-web-testing-support"
-    testImplementation "org.grails.plugins:geb"
     testImplementation "org.spockframework:spock-core"
-    testImplementation "org.seleniumhq.selenium:selenium-remote-driver:4.19.1"
-    testImplementation "org.seleniumhq.selenium:selenium-api:4.19.1"
-    testImplementation "org.seleniumhq.selenium:selenium-support:4.19.1"
-    testRuntimeOnly "org.seleniumhq.selenium:selenium-chrome-driver:4.19.1"
-    testRuntimeOnly "org.seleniumhq.selenium:selenium-firefox-driver:4.19.1"
+    integrationTestImplementation testFixtures('org.grails.plugins:geb')
 
     implementation "dumbster:dumbster:$dumbsterVersion", { transitive = false }
     implementation "org.grails.plugins:mail:$mailVersion"
@@ -72,11 +65,6 @@ dependencies {
     implementation project(":spring-security-ui")
 }
 
-webdriverBinaries {
-    chromedriver "${chromeDriverVersion}"
-    geckodriver "${geckoDriverVersion}"
-}
-
 bootRun {
     jvmArgs('-Dspring.output.ansi.enabled=always')
     sourceResources sourceSets.main
@@ -87,12 +75,5 @@ assets {
     minifyCss = true
 }
 
-
-tasks.withType(Test) {
-    systemProperty "geb.env", System.getProperty('geb.env')
-    systemProperty "geb.build.reportsDir", reporting.file("geb/integrationTest")
-    systemProperty "webdriver.chrome.driver", System.getProperty('webdriver.chrome.driver')
-    systemProperty "webdriver.gecko.driver", System.getProperty('webdriver.gecko.driver')
-}
 
 apply from: "${rootProject.projectDir}/gradle/integrationTestVerbose.gradle"
