@@ -1,22 +1,11 @@
 package spec
 
+import grails.testing.mixin.integration.Integration
 import page.aclObjectIdentity.AclObjectIdentityCreatePage
 import page.aclObjectIdentity.AclObjectIdentityEditPage
 import page.aclObjectIdentity.AclObjectIdentitySearchPage
-import spock.lang.IgnoreIf
 
-@IgnoreIf({
-	if (!System.getProperty('geb.env')) {
-		return true
-	}
-	if (System.getProperty('geb.env') == 'phantomjs' && !System.getProperty('phantomjs.binary.path')) {
-		return true
-	}
-	if (System.getProperty('geb.env') == 'chrome' && !System.getProperty('webdriver.chrome.driver')) {
-		return true
-	}
-	false
-})
+@Integration
 class AclObjectIdentitySpec extends AbstractSecuritySpec {
 
 	void testFindAll() {

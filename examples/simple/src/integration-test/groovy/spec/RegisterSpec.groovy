@@ -1,5 +1,6 @@
 package spec
 
+import grails.testing.mixin.integration.Integration
 import page.register.ForgotPasswordPage
 import page.register.RegisterPage
 import page.user.UserEditPage
@@ -7,20 +8,8 @@ import page.user.UserSearchPage
 
 import com.dumbster.smtp.SimpleSmtpServer
 import com.dumbster.smtp.SmtpMessage
-import spock.lang.IgnoreIf
 
-@IgnoreIf({
-	if (!System.getProperty('geb.env')) {
-		return true
-	}
-	if (System.getProperty('geb.env') == 'phantomjs' && !System.getProperty('phantomjs.binary.path')) {
-		return true
-	}
-	if (System.getProperty('geb.env') == 'chrome' && !System.getProperty('webdriver.chrome.driver')) {
-		return true
-	}
-	false
-})
+@Integration
 class RegisterSpec extends AbstractSecuritySpec {
 
 	private SimpleSmtpServer server
