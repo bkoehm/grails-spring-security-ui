@@ -6,14 +6,22 @@ import page.user.UserEditPage
 import page.user.UserSearchPage
 import spock.lang.Issue
 import spock.lang.Stepwise
+import test.User
 
-@Integration
 @Stepwise
+@Integration
 class UserSimpleSpec extends AbstractSecuritySpec {
 
     void testFindAll() {
         when:
         to UserSearchPage
+
+        and:
+        User.withNewSession {
+            User.findAll().sort { it.username }.eachWithIndex { u, i ->
+                println "$i: ${u.username}"
+            }
+        }
 
         then:
         assertNotSearched()

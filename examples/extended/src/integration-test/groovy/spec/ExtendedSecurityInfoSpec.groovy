@@ -3,7 +3,9 @@ package spec
 import grails.testing.mixin.integration.Integration
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserCache
+import spock.lang.Stepwise
 
+@Stepwise
 @Integration
 class ExtendedSecurityInfoSpec extends AbstractSecuritySpec {
 

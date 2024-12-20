@@ -3,7 +3,9 @@ package spec
 import grails.testing.mixin.integration.Integration
 import page.registrationCode.RegistrationCodeEditPage
 import page.registrationCode.RegistrationCodeSearchPage
+import spock.lang.Stepwise
 
+@Stepwise
 @Integration
 class RegistrationCodeSpec extends AbstractSecuritySpec {
 

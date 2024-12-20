@@ -12,7 +12,9 @@ import page.profile.ProfileCreatePage
 import page.user.UserEditPage
 import page.user.UserSearchPage
 import page.register.ResetPasswordPage
+import spock.lang.Stepwise
 
+@Stepwise
 @Integration
 class RegisterSpec extends AbstractSecuritySpec {
 

@@ -8,7 +8,9 @@ import page.user.UserSearchPage
 
 import com.dumbster.smtp.SimpleSmtpServer
 import com.dumbster.smtp.SmtpMessage
+import spock.lang.Stepwise
 
+@Stepwise
 @Integration
 class RegisterSpec extends AbstractSecuritySpec {
 
