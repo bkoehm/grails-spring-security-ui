@@ -16,6 +16,7 @@ import spock.lang.PendingFeature
 import spock.lang.Stepwise
 import test.User
 
+@Stepwise
 @Integration
 class RegisterSpec extends AbstractSecuritySpec {
 

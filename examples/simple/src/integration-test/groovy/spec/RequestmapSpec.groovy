@@ -4,7 +4,9 @@ import grails.testing.mixin.integration.Integration
 import page.requestmap.RequestmapCreatePage
 import page.requestmap.RequestmapEditPage
 import page.requestmap.RequestmapSearchPage
+import spock.lang.Stepwise
 
+@Stepwise
 @Integration
 class RequestmapSpec extends AbstractSecuritySpec {
 

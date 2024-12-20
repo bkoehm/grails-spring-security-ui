@@ -1,7 +1,9 @@
 package spec
 
 import grails.testing.mixin.integration.Integration
+import spock.lang.Stepwise
 
+@Stepwise
 @Integration
 class ExtendedMenuSpec extends AbstractSecuritySpec {
 
