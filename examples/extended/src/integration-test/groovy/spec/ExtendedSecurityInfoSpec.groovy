@@ -1,9 +1,13 @@
 package spec
 
 import grails.testing.mixin.integration.Integration
+import org.springframework.security.core.userdetails.User
+import org.springframework.security.core.userdetails.UserCache
 
 @Integration
 class ExtendedSecurityInfoSpec extends AbstractSecuritySpec {
+
+	UserCache userCache
 
 	void testConfig() {
 		when:
@@ -37,12 +41,27 @@ class ExtendedSecurityInfoSpec extends AbstractSecuritySpec {
 	}
 
 	void testUsercache() {
+		given:
+		userCache.putUserInCache(new User('testuser', 'pw', []))
+
 		when:
 		go 'securityInfo/usercache'
 
 		then:
-		assertContentContains 'UserCache class: net.sf.ehcache.Cache'
-		assertContentContains 'Memory Store Object Count 0'
+		assertContentContains 'UserCache class: org.ehcache.jsr107.Eh107Cache'
+		assertContentContains 'testuser'
+
+		cleanup:
+		userCache.removeUserFromCache('testuser')
+	}
+
+	void testEmptyUsercache() {
+		when:
+		go 'securityInfo/usercache'
+
+		then:
+		assertContentContains 'UserCache class: org.ehcache.jsr107.Eh107Cache'
+		assertContentDoesNotContain'testuser'
 	}
 
 	void testFilterChains() {
