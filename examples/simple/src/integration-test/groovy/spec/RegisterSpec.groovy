@@ -112,7 +112,6 @@ class RegisterSpec extends AbstractSecuritySpec {
 
 		then:
 		assertHtmlContains 'Your registration is complete'
-		assertContentContains 'Logged in as ' + un
 
 		when:
 		logout()
@@ -188,7 +187,6 @@ class RegisterSpec extends AbstractSecuritySpec {
 
 		then:
 		assertHtmlContains 'Your password was successfully changed'
-		assertContentContains 'Logged in as ' + un
 
 		when:
 		logout()

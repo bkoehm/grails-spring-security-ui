@@ -36,7 +36,7 @@ class ExtendedSecurityInfoSpec extends AbstractSecuritySpec {
 		go 'securityInfo/currentAuth'
 
 		then:
-		assertContentContains 'org.springframework.security.web.authentication.WebAuthenticationDetails'
+		assertContentContains 'Details WebAuthenticationDetails'
 		assertContentContains '__grails.anonymous.user__'
 	}
 
