@@ -4,8 +4,10 @@ import grails.testing.mixin.integration.Integration
 import page.user.UserCreatePage
 import page.user.UserEditPage
 import page.user.UserSearchPage
+import spock.lang.Stepwise
 
 @Integration
+@Stepwise
 class UserSpec extends AbstractSecuritySpec {
 
 	void testFindAll() {
