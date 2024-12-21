@@ -34,8 +34,7 @@ jobs:
         id: tests
         uses: gradle/gradle-build-action@v2
         with:
-          #arguments: check
-          arguments: :examples-extended:check
+          arguments: check
       - name: Run Build
         if: github.event_name == 'push'
         id: build
@@ -43,7 +42,7 @@ jobs:
         env:
           GRADLE_ENTERPRISE_ACCESS_KEY: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
         with:
-          arguments: build
+          arguments: build -x check
       - name: Publish Test Report
         if: steps.build.outcome == 'failure' || steps.tests.outcome == 'failure'
         uses: scacap/action-surefire-report@v1
