@@ -12,8 +12,9 @@ import page.profile.ProfileCreatePage
 import page.user.UserEditPage
 import page.user.UserSearchPage
 import page.register.ResetPasswordPage
-import spock.lang.Ignore
+import spock.lang.PendingFeature
 import spock.lang.Stepwise
+import test.User
 
 @Stepwise
 @Integration
@@ -81,7 +82,7 @@ class RegisterSpec extends AbstractSecuritySpec {
 	}
 
 	// FIXME
-	/*@Ignore("test is failing at deleteProfile stage")
+	@PendingFeature(reason="test is failing at deleteProfile stage")
 	void testRegisterAndForgotPassword() {
 
 		given:
@@ -223,7 +224,12 @@ class RegisterSpec extends AbstractSecuritySpec {
 
 		then:
 		assertHtmlContains 'User not found'
-	}*/
+
+		cleanup:
+		User.withNewSession {
+			User.deleteAll(User.findAll())
+		}
+	}
 
 	private SmtpMessage getCurrentEmail() {
 		def received = server.receivedEmail
