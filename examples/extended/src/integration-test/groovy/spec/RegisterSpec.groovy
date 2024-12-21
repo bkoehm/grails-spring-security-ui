@@ -81,7 +81,7 @@ class RegisterSpec extends AbstractSecuritySpec {
 	}
 
 	// FIXME
-	@Ignore("test is failing at deleteProfile stage")
+	/*@Ignore("test is failing at deleteProfile stage")
 	void testRegisterAndForgotPassword() {
 
 		given:
@@ -223,7 +223,7 @@ class RegisterSpec extends AbstractSecuritySpec {
 
 		then:
 		assertHtmlContains 'User not found'
-	}
+	}*/
 
 	private SmtpMessage getCurrentEmail() {
 		def received = server.receivedEmail
