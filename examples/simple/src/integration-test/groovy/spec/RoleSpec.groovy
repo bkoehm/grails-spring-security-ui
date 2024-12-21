@@ -5,6 +5,7 @@ import page.role.RoleCreatePage
 import page.role.RoleEditPage
 import page.role.RoleSearchPage
 
+@Integration
 class RoleSpec extends AbstractSecuritySpec {
 
 	void testFindAll() {
