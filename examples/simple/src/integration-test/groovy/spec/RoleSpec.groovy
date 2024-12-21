@@ -7,6 +7,7 @@ import page.role.RoleSearchPage
 import spock.lang.Stepwise
 
 @Stepwise
+@Integration
 class RoleSpec extends AbstractSecuritySpec {
 
 	void testFindAll() {

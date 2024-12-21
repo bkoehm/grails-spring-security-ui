@@ -29,13 +29,6 @@ jobs:
         with:
           distribution: 'liberica'
           java-version: ${{ matrix.java }}
-      - name: Run Build
-        if: github.event_name == 'push'
-        id: build
-        uses: gradle/gradle-build-action@v2
-        env:
-          GRADLE_ENTERPRISE_ACCESS_KEY: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
-        with:
           arguments: assetCompile build -x check
       - name: Run plugin tests
         #if: github.event_name == 'pull_request'
