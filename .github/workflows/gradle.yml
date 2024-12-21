@@ -49,6 +49,11 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: :examples-simple:check
+      - name: Stop Gradle daemons
+        id: stop-gradle-daemons
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: "--stop"
       - name: Run examples-extended tests
         #if: github.event_name == 'pull_request'
         id: examples-extended-tests
