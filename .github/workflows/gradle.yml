@@ -43,14 +43,19 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: :spring-security-ui:check
+      - name: Stop Gradle daemons1
+        id: stop-gradle-daemons1
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: "--stop"
       - name: Run examples-simple tests
         #if: github.event_name == 'pull_request'
         id: examples-simple-tests
         uses: gradle/gradle-build-action@v2
         with:
           arguments: :examples-simple:check
-      - name: Stop Gradle daemons
-        id: stop-gradle-daemons
+      - name: Stop Gradle daemons2
+        id: stop-gradle-daemons2
         uses: gradle/gradle-build-action@v2
         with:
           arguments: "--stop"
