@@ -3,6 +3,7 @@ package spec
 import com.dumbster.smtp.SimpleSmtpServer
 import com.dumbster.smtp.SmtpMessage
 import grails.testing.mixin.integration.Integration
+import org.springframework.test.annotation.DirtiesContext
 import page.profile.ProfileEditPage
 import page.profile.ProfileListPage
 import page.register.ForgotPasswordPage
@@ -82,6 +83,7 @@ class RegisterSpec extends AbstractSecuritySpec {
 	}
 
 	// FIXME
+	@DirtiesContext
 	@PendingFeature(reason="test is failing at deleteProfile stage")
 	void testRegisterAndForgotPassword() {
 
@@ -224,11 +226,6 @@ class RegisterSpec extends AbstractSecuritySpec {
 
 		then:
 		assertHtmlContains 'User not found'
-
-		cleanup:
-		User.withNewSession {
-			User.deleteAll(User.findAll())
-		}
 	}
 
 	private SmtpMessage getCurrentEmail() {

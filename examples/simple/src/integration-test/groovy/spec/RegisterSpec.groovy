@@ -1,6 +1,7 @@
 package spec
 
 import grails.testing.mixin.integration.Integration
+import org.springframework.test.annotation.DirtiesContext
 import page.register.ForgotPasswordPage
 import page.register.RegisterPage
 import page.user.UserEditPage
@@ -77,6 +78,7 @@ class RegisterSpec extends AbstractSecuritySpec {
 	}
 
 	// FIXME
+	@DirtiesContext
 	@PendingFeature(reason="test is failing at resetPassword stage")
 	void testRegisterAndForgotPassword() {
 
@@ -220,11 +222,6 @@ class RegisterSpec extends AbstractSecuritySpec {
 
 		then:
 		assertHtmlContains 'User not found'
-
-		cleanup:
-		User.withNewSession {
-			User.deleteAll(User.findAll())
-		}
 	}
 
 	private SmtpMessage getCurrentEmail() {
