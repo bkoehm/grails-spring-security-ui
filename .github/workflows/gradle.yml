@@ -29,12 +29,6 @@ jobs:
         with:
           distribution: 'liberica'
           java-version: ${{ matrix.java }}
-      - name: Run Tests
-        #if: github.event_name == 'pull_request'
-        id: tests
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: check
       - name: Run Build
         if: github.event_name == 'push'
         id: build
@@ -42,9 +36,27 @@ jobs:
         env:
           GRADLE_ENTERPRISE_ACCESS_KEY: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
         with:
-          arguments: build -x check
+          arguments: assetCompile build -x check
+      - name: Run plugin tests
+        #if: github.event_name == 'pull_request'
+        id: plugin-tests
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: :spring-security-ui:check
+      - name: Run examples-simple tests
+        #if: github.event_name == 'pull_request'
+        id: examples-simple-tests
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: :examples-simple:check
+      - name: Run examples-extended tests
+        #if: github.event_name == 'pull_request'
+        id: examples-extended-tests
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: :examples-extended:check
       - name: Publish Test Report
-        if: steps.build.outcome == 'failure' || steps.tests.outcome == 'failure'
+        if: steps.plugin-tests.outcome == 'failure' || steps.examples-simple-tests.outcome == 'failure' || steps.examples-extended-tests.outcome == 'failure'
         uses: scacap/action-surefire-report@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
