@@ -56,12 +56,6 @@ repositories {
     maven { url "https://repo.grails.org/grails/core" }
 }
 
-configurations {
-    all {
-        exclude group: 'javax.servlet'
-    }
-}
-
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-logging"
     implementation "org.springframework.boot:spring-boot-autoconfigure"
