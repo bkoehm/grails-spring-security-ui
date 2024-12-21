@@ -34,7 +34,8 @@ jobs:
         id: tests
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: check
+          #arguments: check
+          arguments: :examples-extended:check
       - name: Run Build
         if: github.event_name == 'push'
         id: build
