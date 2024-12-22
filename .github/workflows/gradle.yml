@@ -64,7 +64,7 @@ jobs:
           arguments: docs
       - name: Publish to Github Pages
         if: steps.publish.outcome == 'success' && github.event_name == 'push' && matrix.java == '8'
-        uses: micronaut-projects/github-pages-deploy-action@grails
+        uses: grails/github-pages-deploy-action@grails
         env:
           TARGET_REPOSITORY: ${{ github.repository }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
